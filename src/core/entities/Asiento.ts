@@ -1,4 +1,3 @@
-// src/core/entities/Asiento.ts
 
 export enum EstadoAsiento {
     DISPONIBLE = "DISPONIBLE",

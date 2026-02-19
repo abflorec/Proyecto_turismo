@@ -1,4 +1,3 @@
-// src/core/entities/Bus.ts
 import { Asiento, EstadoAsiento } from "./Asiento";
 
 export enum TipoServicioBus {
