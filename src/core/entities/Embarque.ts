@@ -1,4 +1,3 @@
-// src/core/entities/Embarque.ts
 import { Boleto } from "./Boleto";
 
 export enum EstadoEmbarque {
