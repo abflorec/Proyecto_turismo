@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema TipoServicioBus - Panel de Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Pasajeros - TipoServicioBus</h1>
+    </header>
+
+    <main>
+        <section id="resumen-ventas">
+            <h2>Boletos Emitidos</h2>
+            <section id="nueva-reserva">
+    <h2>Nueva Reserva</h2>
+    <form id="form-reserva">
+        <input type="text" id="pasajero" placeholder="Nombre del Pasajero" required>
+        <input type="text" id="dni" placeholder="DNI" required>
+        <select id="categoria">
+            <option value="ESTANDAR">Estándar</option>
+            <option value="VIP">VIP</option>
+        </select>
+        <button type="submit">Generar Boleto</button>
+    </form>
+</section>
+            <table id="tabla-boletos">
+                <thead>
+                    <tr>
+                        <th>ID Boleto</th>
+                        <th>Pasajero</th>
+                        <th>Servicio</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-cuerpo">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
