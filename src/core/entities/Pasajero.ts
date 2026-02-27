@@ -1,9 +1,6 @@
-// src/core/entities/Pasajero.ts
-
-export class Pasajero {
-    constructor(
-        public readonly dni: string,
-        public readonly nombre: string,
-        public readonly email: string
-    ) {}
+import { Persona } from './Persona';
+export class Pasajero extends Persona {
+    constructor(id: number, nombre: string, telefono: string, public dni: string) {
+        super(id, nombre, telefono);
+    }
 }

@@ -1,39 +1,19 @@
-import { Asiento, EstadoAsiento } from "./Asiento";
-
-export enum TipoServicioBus {
-    ECONOMICO = "ECONOMICO",
-    VIP = "VIP"
-}
+import { EstadoBus } from './Enums';
+import { Asiento } from './Asiento';
 
 export class Bus {
-    private asientos: Asiento[] = [];
+    public asientos: Asiento[] = [];
+    public estado: EstadoBus = EstadoBus.ACTIVO;
 
     constructor(
-        public readonly placa: string,
-        public readonly modelo: string,
-        public readonly capacidad: number,
-        public readonly tipoServicio: TipoServicioBus
+        public id: number, 
+        public placa: string, 
+        public capacidad: number, 
+        public modelo: string
     ) {
-        this.generarAsientos();
-    }
-
-    private generarAsientos(): void {
-        for (let i = 1; i <= this.capacidad; i++) {
-            // Lógica simple: si tiene más de 40 asientos, los primeros 20 son piso 1, resto piso 2
-            const piso = i <= 20 ? 1 : 2;
-            this.asientos.push(new Asiento(i, piso));
+        // Composición: El bus crea sus propios asientos
+        for (let i = 1; i <= capacidad; i++) {
+            this.asientos.push(new Asiento(i));
         }
-    }
-
-    public getAsientos(): Asiento[] {
-        return this.asientos;
-    }
-
-    public buscarAsiento(numero: number): Asiento | undefined {
-        return this.asientos.find(a => a.numero === numero);
-    }
-    
-    public obtenerDisponibilidad(): number {
-        return this.asientos.filter(a => a.estaLibre()).length;
     }
 }

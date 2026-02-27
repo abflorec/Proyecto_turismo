@@ -1,29 +1,17 @@
-// src/core/repositories/BoletoRepository.ts
-import * as fs from 'fs-extra';
-import { Boleto } from '../entities/Boleto';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export class BoletoRepository {
-    private readonly filePath = './database.json';
+    private filePath = path.join(__dirname, '../../../database.json');
 
-    public async guardar(boleto: Boleto): Promise<void> {
-        // 1. Leer lo que ya existe
-        const data = await fs.readJson(this.filePath);
-        
-        // 2. Agregar el nuevo boleto (convertido a objeto simple)
-        data.boletos.push({
-            idBoleto: boleto.idBoleto,
-            pasajero: boleto.reserva.pasajero.nombre,
-            montoTotal: boleto.montoTotal,
-            fecha: boleto.fechaEmision
-        });
-
-        // 3. Sobrescribir el archivo con la nueva información
-        await fs.writeJson(this.filePath, data, { spaces: 2 });
-        console.log("✅ Boleto guardado en el archivo JSON");
+    guardar(datos: any) {
+        const bd = JSON.parse(fs.readFileSync(this.filePath, 'utf-8'));
+        bd.boletos.push(datos);
+        fs.writeFileSync(this.filePath, JSON.stringify(bd, null, 2));
     }
 
-    public async obtenerTodos(): Promise<any[]> {
-        const data = await fs.readJson(this.filePath);
-        return data.boletos;
+    obtenerTodos() {
+        const bd = JSON.parse(fs.readFileSync(this.filePath, 'utf-8'));
+        return bd.boletos;
     }
 }

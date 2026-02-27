@@ -1,33 +1,25 @@
-import { Boleto } from "./Boleto";
-
-export enum EstadoEmbarque {
-    RESERVADO = "RESERVADO",
-    CONFIRMADO = "CONFIRMADO",
-    ABORDADO = "ABORDADO",
-    AUSENTE = "AUSENTE"
-}
+import { Boleto } from './Boleto';
+import { EstadoEmbarque } from './Enums';
 
 export class Embarque {
-    private estado: EstadoEmbarque;
-
     constructor(
-        public readonly idEmbarque: string,
-        public readonly boleto: Boleto,
-        public readonly fechaHora: Date = new Date()
-    ) {
-        // Al crearse el registro, el estado inicial es RESERVADO
-        this.estado = EstadoEmbarque.RESERVADO;
+        public id: number,
+        public horaEmbarque: string,
+        public estado: EstadoEmbarque = EstadoEmbarque.PENDIENTE,
+        public boleto: Boleto
+    ) {}
+
+    public validarBoleto(): boolean {
+        // Lógica: Si el boleto tiene código, es válido para embarcar
+        return this.boleto.codigo !== "";
     }
 
-    public registrarAbordaje(): void {
-        this.estado = EstadoEmbarque.ABORDADO;
-    }
-
-    public registrarAusencia(): void {
-        this.estado = EstadoEmbarque.AUSENTE;
-    }
-
-    public getEstado(): EstadoEmbarque {
-        return this.estado;
+    public registrarEmbarque(): void {
+        if (this.validarBoleto()) {
+            this.estado = EstadoEmbarque.REALIZADO;
+            console.log(`Embarque ${this.id} realizado con éxito.`);
+        } else {
+            console.log("Error: Boleto no válido.");
+        }
     }
 }

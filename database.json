@@ -1,5 +1,8 @@
 {
   "boletos": [],
   "pasajeros": [],
-  "viajes": []
+  "conductores": [],
+  "viajes": [],
+  "reservas": [],
+  "facturas": []
 }
