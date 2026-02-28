@@ -1,40 +1,45 @@
-// frontend/script.js
+const form = document.getElementById('reservaForm');
+const tableBody = document.querySelector('#boletosTable tbody');
 
-async function cargarBoletos() {
-    try {
-        // Buscamos el archivo que genera el BoletoRepository
-        // Nota: Ajusta la ruta si tu JSON está en una carpeta distinta
-        const respuesta = await fetch('../database.json');
-        const datos = await respuesta.json();
-        
-        const tablaCuerpo = document.getElementById('lista-cuerpo');
-        tablaCuerpo.innerHTML = ''; // Limpiar tabla
+// Función para enviar reserva al servidor
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        datos.boletos.forEach(boleto => {
-            const fila = document.createElement('tr');
-            
-            fila.innerHTML = `
-                <td>${boleto.idBoleto}</td>
-                <td>${boleto.pasajero}</td>
-                <td>${servicioBadge(boleto.servicio)}</td>
-                <td>$${boleto.montoTotal}</td>
-                <td>${new Date(boleto.fechaEmision).toLocaleDateString()}</td>
-            `;
-            
-            tablaCuerpo.appendChild(fila);
-        });
-    } catch (error) {
-        console.error("Error al cargar los datos:", error);
+    const data = {
+        nombre: document.getElementById('nombre').value,
+        dni: document.getElementById('dni').value,
+        telefono: document.getElementById('telefono').value,
+        categoria: document.getElementById('categoria').value
+    };
+
+    const response = await fetch('/api/reservar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        alert("✅ Reserva procesada por el sistema");
+        form.reset();
+        cargarBoletos(); // Recarga la tabla
     }
+});
+
+// Función para cargar los boletos guardados en el JSON
+async function cargarBoletos() {
+    const response = await fetch('/api/boletos');
+    const boletos = await response.json();
+
+    tableBody.innerHTML = boletos.map(b => `
+        <tr>
+            <td>${b.boleto.codigo}</td>
+            <td>${b.cliente}</td>
+            <td>${b.reserva.pasajero.dni}</td>
+            <td>$${b.boleto.precio}</td>
+            <td>Confirmada</td>
+        </tr>
+    `).join('');
 }
 
-// Función para darle color al tipo de servicio
-function servicioBadge(servicio) {
-    const estilo = servicio === 'VIP' ? 'background: #f1c40f; color: black;' : 'background: #3498db; color: white;';
-    return `<span style="padding: 4px 8px; border-radius: 4px; font-weight: bold; ${estilo}">${servicio}</span>`;
-}
-
-// Cargar al iniciar la página
+// Cargar al iniciar
 cargarBoletos();
-// Opcional: Recargar cada 5 segundos para ver cambios en vivo
-setInterval(cargarBoletos, 5000);

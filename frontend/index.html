@@ -2,44 +2,49 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema TipoServicioBus - Panel de Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TipoServicioBus - Reservas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Gestión de Pasajeros - TipoServicioBus</h1>
-    </header>
+    <div class="container">
+        <h1>🚍 Sistema TipoServicioBus</h1>
+        
+        <section class="form-section">
+            <h2>Realizar Reserva</h2>
+            <form id="reservaForm">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="text" id="dni" placeholder="DNI" required>
+                <input type="tel" id="telefono" placeholder="Teléfono" required>
+                
+                <select id="categoria">
+                    <option value="Regular">Servicio Regular</option>
+                    <option value="VIP">Servicio VIP (+50%)</option>
+                </select>
 
-    <main>
-        <section id="resumen-ventas">
+                <button type="submit">Confirmar Reserva</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="table-section">
             <h2>Boletos Emitidos</h2>
-            <section id="nueva-reserva">
-    <h2>Nueva Reserva</h2>
-    <form id="form-reserva">
-        <input type="text" id="pasajero" placeholder="Nombre del Pasajero" required>
-        <input type="text" id="dni" placeholder="DNI" required>
-        <select id="categoria">
-            <option value="ESTANDAR">Estándar</option>
-            <option value="VIP">VIP</option>
-        </select>
-        <button type="submit">Generar Boleto</button>
-    </form>
-</section>
-            <table id="tabla-boletos">
+            <table id="boletosTable">
                 <thead>
                     <tr>
-                        <th>ID Boleto</th>
+                        <th>Código</th>
                         <th>Pasajero</th>
-                        <th>Servicio</th>
-                        <th>Total</th>
-                        <th>Fecha</th>
+                        <th>DNI</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
-                <tbody id="lista-cuerpo">
+                <tbody>
                     </tbody>
             </table>
         </section>
-    </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
