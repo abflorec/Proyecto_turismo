@@ -1,45 +1,50 @@
-const form = document.getElementById('reservaForm');
-const tableBody = document.querySelector('#boletosTable tbody');
+document.addEventListener('DOMContentLoaded', () => {
+    const btnBuscar = document.getElementById('btnBuscar');
+    const inputFecha = document.getElementById('fechaIda');
+    
+    // Poner fecha de hoy por defecto
+    const today = new Date().toISOString().split('T')[0];
+    inputFecha.value = today;
 
-// Función para enviar reserva al servidor
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    btnBuscar.addEventListener('click', async () => {
+        const origen = "TACNA"; // Origen siempre Tacna
+        const destino = document.getElementById('destino').value;
+        const fecha = inputFecha.value;
 
-    const data = {
-        nombre: document.getElementById('nombre').value,
-        dni: document.getElementById('dni').value,
-        telefono: document.getElementById('telefono').value,
-        categoria: document.getElementById('categoria').value
-    };
+        if(!fecha) {
+            alert("Por favor selecciona una fecha");
+            return;
+        }
 
-    const response = await fetch('/api/reservar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        console.log(`Buscando viajes desde ${origen} hacia ${destino} para el ${fecha}...`);
+        
+        // Simulación de llamada a tu API de Express
+        const data = {
+            nombre: "Cliente Web",
+            dni: "00000000",
+            telefono: "900000000",
+            categoria: "Regular",
+            origen: origen,
+            destino: destino
+        };
+
+        const response = await fetch('/api/reservar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert(`¡Buses encontrados para ${destino}! Revisa el database.json para ver la reserva.`);
+        }
     });
 
-    if (response.ok) {
-        alert("✅ Reserva procesada por el sistema");
-        form.reset();
-        cargarBoletos(); // Recarga la tabla
-    }
+    // Botones de las tarjetas de ruta
+    document.querySelectorAll('.btn-reserve').forEach(button => {
+        button.addEventListener('click', () => {
+            const ruta = button.parentElement.querySelector('h4').innerText;
+            alert(`Iniciando reserva para la ruta: ${ruta}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
 });
-
-// Función para cargar los boletos guardados en el JSON
-async function cargarBoletos() {
-    const response = await fetch('/api/boletos');
-    const boletos = await response.json();
-
-    tableBody.innerHTML = boletos.map(b => `
-        <tr>
-            <td>${b.boleto.codigo}</td>
-            <td>${b.cliente}</td>
-            <td>${b.reserva.pasajero.dni}</td>
-            <td>$${b.boleto.precio}</td>
-            <td>Confirmada</td>
-        </tr>
-    `).join('');
-}
-
-// Cargar al iniciar
-cargarBoletos();

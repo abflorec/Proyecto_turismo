@@ -2,49 +2,67 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TipoServicioBus - Reservas</title>
+    <title>Turismo Tacna - Reserva de Pasajes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🚍 Sistema TipoServicioBus</h1>
-        
-        <section class="form-section">
-            <h2>Realizar Reserva</h2>
-            <form id="reservaForm">
-                <input type="text" id="nombre" placeholder="Nombre completo" required>
-                <input type="text" id="dni" placeholder="DNI" required>
-                <input type="tel" id="telefono" placeholder="Teléfono" required>
-                
-                <select id="categoria">
-                    <option value="Regular">Servicio Regular</option>
-                    <option value="VIP">Servicio VIP (+50%)</option>
+    <header>
+        <div class="header-content">
+            <div class="logo">🚌 Turismo Tacna</div>
+        </div>
+    </header>
+
+    <section class="hero-search">
+        <div class="search-bar">
+            <div class="search-input">
+                <label>ORIGEN</label>
+                <input type="text" id="origen" value="TACNA" readonly>
+            </div>
+            <div class="search-input">
+                <label>DESTINO</label>
+                <select id="destino">
+                    <option value="CANDARAVE">CANDARAVE</option>
+                    <option value="ITE">ITE</option>
+                    <option value="AREQUIPA">AREQUIPA</option>
+                    <option value="LIMA">LIMA</option>
                 </select>
+            </div>
+            <div class="search-input">
+                <label>FECHA IDA</label>
+                <input type="date" id="fechaIda">
+            </div>
+            <button id="btnBuscar">BUSCAR BUSES</button>
+        </div>
+    </section>
 
-                <button type="submit">Confirmar Reserva</button>
-            </form>
+    <main class="container">
+        <section class="gallery-section">
+            <h3>Galería</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Bus+Tacna+1" alt="Bus 1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Bus+Tacna+2" alt="Bus 2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Terminal+Tacna" alt="Terminal"></div>
+            </div>
         </section>
 
-        <hr>
-
-        <section class="table-section">
-            <h2>Boletos Emitidos</h2>
-            <table id="boletosTable">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Pasajero</th>
-                        <th>DNI</th>
-                        <th>Precio</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
+        <section class="routes-section">
+            <h3>Rutas y Horarios desde Tacna</h3>
+            <div class="route-cards">
+                <div class="card">
+                    <h4>Tacna a Candarave</h4>
+                    <p>Desde PEN 20.00</p>
+                    <small>Primera Partida: 06:00 | Última: 15:00</small>
+                    <button class="btn-reserve">RESERVAR AHORA</button>
+                </div>
+                <div class="card">
+                    <h4>Tacna a Ite</h4>
+                    <p>Desde PEN 15.00</p>
+                    <small>Primera Partida: 07:00 | Última: 17:00</small>
+                    <button class="btn-reserve">RESERVAR AHORA</button>
+                </div>
+            </div>
         </section>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
