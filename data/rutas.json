@@ -1,0 +1,47 @@
+[
+  {
+    "idRuta": "R001",
+    "nombre": "Tacna - Moquegua",
+    "origen": "Tacna",
+    "destino": "Moquegua",
+    "duracionEstimadaHoras": 2,
+    "precioBase": 50,
+    "paradas": []
+  },
+  {
+    "idRuta": "R002",
+    "nombre": "Tacna - Tarata",
+    "origen": "Tacna",
+    "destino": "Tarata",
+    "duracionEstimadaHoras": 1.5,
+    "precioBase": 30,
+    "paradas": []
+  },
+  {
+    "idRuta": "R003",
+    "nombre": "Tacna - Ite",
+    "origen": "Tacna",
+    "destino": "Ite",
+    "duracionEstimadaHoras": 1,
+    "precioBase": 25,
+    "paradas": []
+  },
+  {
+    "idRuta": "R004",
+    "nombre": "Tacna - Candarave",
+    "origen": "Tacna",
+    "destino": "Candarave",
+    "duracionEstimadaHoras": 3,
+    "precioBase": 60,
+    "paradas": []
+  },
+  {
+    "idRuta": "R005",
+    "nombre": "Tour Histórico Tacna",
+    "origen": "Tacna",
+    "destino": "Tacna",
+    "duracionEstimadaHoras": 4,
+    "precioBase": 80,
+    "paradas": ["Plaza de Armas", "Catedral", "Museo Ferroviario", "Paseo Cívico"]
+  }
+]

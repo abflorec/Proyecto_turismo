@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1772468590679,
+    "email": "paps@gmail.com",
+    "passwordHash": "$2b$10$J9m.elXajIXugd8WSQYLg.ObmS5fzWpwuQGtZw0iM.PSOVfOjfy/G",
+    "rol": "cliente",
+    "nombre": "alexander",
+    "telefono": "9292"
+  },
+  {
+    "id": 1,
+    "email": "admin@example.com",
+    "passwordHash": "$2b$10$PXS7MsME.2jwr.8zbJ/SR.YIQHfRjJgLfOgugX0aFFrtHT0rLhxSa",
+    "rol": "admin",
+    "nombre": "Administrador",
+    "telefono": "123456789"
+  },
+  {
+    "id": 2,
+    "email": "conductor@example.com",
+    "passwordHash": "$2b$10$9jrr20E1Oy9i25a1vz5cj.klzhy9q43ZmCbFadCJoe4i6WOLeOLTW",
+    "rol": "conductor",
+    "nombre": "Conductor123",
+    "telefono": "987654321"
+  }
+]

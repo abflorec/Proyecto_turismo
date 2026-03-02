@@ -1,0 +1,53 @@
+[
+  {
+    "idViaje": "VIAJE-1740938400001",
+    "ruta": {
+      "idRuta": "R001",
+      "nombre": "Tacna - Moquegua",
+      "origen": "Tacna",
+      "destino": "Moquegua",
+      "duracionEstimadaHoras": 2,
+      "precioBase": 50,
+      "paradas": []
+    },
+    "busId": 1712345678901,
+    "fechaHoraSalida": "2025-04-15T08:00:00.000Z",
+    "conductorId": 2,
+    "estado": 0,
+    "ocupacionAsientos": []
+  },
+  {
+    "idViaje": "VIAJE-1740938400002",
+    "ruta": {
+      "idRuta": "R002",
+      "nombre": "Tacna - Tarata",
+      "origen": "Tacna",
+      "destino": "Tarata",
+      "duracionEstimadaHoras": 1.5,
+      "precioBase": 30,
+      "paradas": []
+    },
+    "busId": 1712345678902,
+    "fechaHoraSalida": "2025-04-15T10:30:00.000Z",
+    "conductorId": 2,
+    "estado": 0,
+    "ocupacionAsientos": []
+  },
+  {
+    "idViaje": "VIAJE-1740938400003",
+    "ruta": {
+      "idRuta": "R003",
+      "nombre": "Tacna - Ite",
+      "origen": "Tacna",
+      "destino": "Ite",
+      "duracionEstimadaHoras": 1,
+      "precioBase": 25,
+      "paradas": []
+    },
+    "busId": 1712345678903,
+    "fechaHoraSalida": "2025-04-16T09:00:00.000Z",
+    "conductorId": 2,
+    "estado": 0,
+    "ocupacionAsientos": []
+  }
+]

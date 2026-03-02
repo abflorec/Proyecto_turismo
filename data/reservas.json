@@ -1,14 +1,15 @@
 [
   {
-    "id": 1772460020602,
+    "id": 1772468619261,
     "pasajero": {
-      "nombre": "pedrito",
-      "email": "papfritas@123gmail",
-      "telefono": "91112222"
+      "nombre": "juan",
+      "email": "paps@gmail.com",
+      "telefono": "818212"
     },
     "tipoBoleto": "Normal",
-    "ruta": "Tacna - Moquegua",
-    "fecha": "2027-10-17",
-    "fechaRegistro": "2026-03-02T14:00:20.602Z"
+    "ruta": "Tacna - Tarata",
+    "fecha": "2026-10-17",
+    "fechaRegistro": "2026-03-02T16:23:39.261Z",
+    "userId": 1772468590679
   }
 ]

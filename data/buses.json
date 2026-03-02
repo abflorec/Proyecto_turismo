@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1712345678901,
+    "placa": "ABC-123",
+    "capacidad": 40,
+    "modelo": "Mercedes Benz",
+    "estado": 0
+  },
+  {
+    "id": 1712345678902,
+    "placa": "XYZ-789",
+    "capacidad": 30,
+    "modelo": "Volvo",
+    "estado": 0
+  },
+  {
+    "id": 1712345678903,
+    "placa": "DEF-456",
+    "capacidad": 50,
+    "modelo": "Scania",
+    "estado": 0
+  }
+]

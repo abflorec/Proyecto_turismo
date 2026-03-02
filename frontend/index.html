@@ -1,107 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Reserva de pasajes y tours desde Tacna - Moquegua, Tarata, Ite, Candarave y Tour Histórico"/>
-  <title>Reserva de Pasajes y Tours - Tacna</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Reservas - Tacna</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
   <div class="container">
-    <header>
-      <h1>Reserva tu viaje desde Tacna</h1>
-      <p class="subtitle">Rutas nacionales y tours históricos</p>
-    </header>
+    <!-- Vista de Login/Registro (siempre visible al no estar autenticado) -->
+    <div id="auth-container" class="auth-container">
+      <div class="tabs">
+        <button class="tab-button active" id="login-tab">Iniciar Sesión</button>
+        <button class="tab-button" id="register-tab">Registrarse</button>
+      </div>
 
-    <main>
-      <form id="formReserva" aria-label="Formulario de reserva de viaje">
-        
+      <!-- Formulario de Login -->
+      <form id="login-form" class="auth-form active">
+        <h2>Accede a tu cuenta</h2>
         <div class="form-group">
-          <label for="nombre" class="required">Nombre completo</label>
-          <input 
-            type="text" 
-            id="nombre" 
-            name="nombre" 
-            placeholder="Ej: Juan Pérez Gómez" 
-            required 
-            autocomplete="name"
-            aria-required="true"
-          >
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required>
         </div>
-
         <div class="form-group">
-          <label for="email" class="required">Correo electrónico</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="ejemplo@correo.com" 
-            required 
-            autocomplete="email"
-            aria-required="true"
-          >
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" required>
         </div>
-
-        <div class="form-group">
-          <label for="telefono" class="required">Teléfono / WhatsApp</label>
-          <input 
-            type="tel" 
-            id="telefono" 
-            name="telefono" 
-            placeholder="Ej: +51 987 654 321" 
-            required 
-            autocomplete="tel"
-            aria-required="true"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="tipoBoleto" class="required">Tipo de boleto</label>
-          <select id="tipoBoleto" name="tipoBoleto" required aria-required="true">
-            <option value="" disabled selected>Seleccione tipo de boleto</option>
-            <option value="Normal">Normal</option>
-            <option value="VIP">VIP</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="ruta" class="required">Ruta o Tour</label>
-          <select id="ruta" name="ruta" required aria-required="true">
-            <option value="" disabled selected>Seleccione ruta o tour</option>
-            <option value="Tacna - Moquegua">Tacna → Moquegua</option>
-            <option value="Tacna - Tarata">Tacna → Tarata</option>
-            <option value="Tacna - Ite">Tacna → Ite</option>
-            <option value="Tacna - Candarave">Tacna → Candarave</option>
-            <option value="Tour General Histórico de Tacna">Tour General Histórico de Tacna</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="fecha" class="required">Fecha del viaje</label>
-          <input 
-            type="date" 
-            id="fecha" 
-            name="fecha" 
-            required 
-            aria-required="true"
-          >
-          <!-- El min se establece con JavaScript más abajo -->
-        </div>
-
-        <button type="submit" id="btnSubmit">Registrar Reserva</button>
-
-        <div id="mensaje" role="alert" aria-live="polite"></div>
+        <button type="submit">Ingresar</button>
+        <div id="login-message" class="message"></div>
       </form>
-    </main>
 
-    <footer>
-      <p>© 2025 - Sistema de Reservas Tacna</p>
-    </footer>
+      <!-- Formulario de Registro -->
+      <form id="register-form" class="auth-form">
+        <h2>Crear cuenta nueva</h2>
+        <div class="form-group">
+          <label for="register-nombre">Nombre completo</label>
+          <input type="text" id="register-nombre">
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" required>
+        </div>
+        <div class="form-group">
+          <label for="register-telefono">Teléfono</label>
+          <input type="tel" id="register-telefono">
+        </div>
+        <div class="form-group">
+          <label for="register-password">Contraseña</label>
+          <input type="password" id="register-password" required>
+        </div>
+        <button type="submit">Registrarse</button>
+        <div id="register-message" class="message"></div>
+      </form>
+    </div>
+
+    <!-- Panel de Cliente (Reservas) -->
+    <div id="cliente-panel" class="app-container" style="display: none;">
+      <header>
+        <h1>Reserva tu viaje desde Tacna</h1>
+        <p class="subtitle">Bienvenido, <span id="cliente-name"></span>! <button id="logout-btn-cliente" class="logout-btn">Cerrar sesión</button></p>
+      </header>
+      <main>
+        <form id="formReserva">
+          <div class="form-group">
+            <label for="nombre" class="required">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="required">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono" class="required">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="tipoBoleto" class="required">Tipo de boleto</label>
+            <select id="tipoBoleto" name="tipoBoleto" required>
+              <option value="" disabled selected>Seleccione tipo</option>
+              <option value="Normal">Normal</option>
+              <option value="VIP">VIP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ruta" class="required">Ruta o Tour</label>
+            <select id="ruta" name="ruta" required>
+              <option value="" disabled selected>Seleccione ruta</option>
+              <option value="Tacna - Moquegua">Tacna → Moquegua</option>
+              <option value="Tacna - Tarata">Tacna → Tarata</option>
+              <option value="Tacna - Ite">Tacna → Ite</option>
+              <option value="Tacna - Candarave">Tacna → Candarave</option>
+              <option value="Tour General Histórico de Tacna">Tour General Histórico</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fecha" class="required">Fecha del viaje</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+          <button type="submit" id="btnSubmit">Registrar Reserva</button>
+          <div id="mensaje" class="message"></div>
+        </form>
+      </main>
+      <footer>
+        <p>© 2025 - Sistema de Reservas Tacna</p>
+      </footer>
+    </div>
+
+    <!-- Panel de Administrador -->
+    <div id="admin-panel" style="display: none;">
+      <header>
+        <h1>Panel de Administrador</h1>
+        <p>Bienvenido, <span id="admin-name"></span>! <button id="logout-btn-admin" class="logout-btn">Cerrar sesión</button></p>
+      </header>
+      <main>
+        <div class="admin-section">
+          <h2>Gestión de Usuarios</h2>
+          <button id="btn-list-usuarios">Listar Usuarios</button>
+          <button id="btn-create-usuario">Crear Usuario</button>
+          <div id="usuarios-list"></div>
+        </div>
+        <div class="admin-section">
+          <h2>Gestión de Buses</h2>
+          <button id="btn-list-buses">Listar Buses</button>
+          <button id="btn-create-bus">Crear Bus</button>
+          <div id="buses-list"></div>
+        </div>
+        <div class="admin-section">
+          <h2>Gestión de Rutas</h2>
+          <button id="btn-list-rutas">Listar Rutas</button>
+          <button id="btn-create-ruta">Crear Ruta</button>
+          <div id="rutas-list"></div>
+        </div>
+        <div class="admin-section">
+          <h2>Gestión de Viajes</h2>
+          <button id="btn-list-viajes">Listar Viajes</button>
+          <button id="btn-create-viaje">Crear Viaje</button>
+          <div id="viajes-list"></div>
+        </div>
+        <div class="admin-section">
+          <h2>Reportes</h2>
+          <button id="btn-reporte">Descargar Reporte de Reservas</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Panel de Conductor -->
+    <div id="conductor-panel" style="display: none;">
+      <header>
+        <h1>Panel de Conductor</h1>
+        <p>Bienvenido, <span id="conductor-name"></span>! <button id="logout-btn-conductor" class="logout-btn">Cerrar sesión</button></p>
+      </header>
+      <main>
+        <div class="conductor-section">
+          <h2>Completar Datos</h2>
+          <form id="conductor-datos-form">
+            <div class="form-group">
+              <label for="dni">DNI</label>
+              <input type="text" id="dni" name="dni">
+            </div>
+            <div class="form-group">
+              <label for="licencia">Licencia</label>
+              <input type="text" id="licencia" name="licencia">
+            </div>
+            <div class="form-group">
+              <label for="bus-preferido">Bus Preferido (ID)</label>
+              <input type="number" id="bus-preferido" name="busId">
+            </div>
+            <button type="submit">Guardar Datos</button>
+          </form>
+        </div>
+        <div class="conductor-section">
+          <h2>Mis Viajes Asignados</h2>
+          <button id="btn-mis-viajes">Ver Viajes</button>
+          <div id="viajes-conductor-list"></div>
+        </div>
+        <div class="conductor-section">
+          <h2>Buses Disponibles</h2>
+          <button id="btn-buses-disponibles">Ver Buses</button>
+          <div id="buses-disponibles-list"></div>
+        </div>
+      </main>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
-
 </body>
 </html>

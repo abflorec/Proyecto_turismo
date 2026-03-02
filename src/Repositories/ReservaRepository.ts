@@ -16,7 +16,8 @@ export class ReservaRepository {
         telefono: item.pasajero.telefono,
         tipoBoleto: item.tipoBoleto,
         ruta: item.ruta,
-        fecha: item.fecha
+        fecha: item.fecha,
+        userId: item.userId
       }));
     } catch (err) {
       if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
@@ -41,5 +42,10 @@ export class ReservaRepository {
 
   async findAll(): Promise<Reserva[]> {
     return ReservaRepository.readAll();
+  }
+
+  async findByUserId(userId: number): Promise<Reserva[]> {
+    const all = await ReservaRepository.readAll();
+    return all.filter(r => r.userId === userId);
   }
 }

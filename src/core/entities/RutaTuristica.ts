@@ -1,31 +1,40 @@
 export class RutaTuristica {
-    private paradas: string[] = [];
+  private paradas: string[] = [];
 
-    constructor(
-        public readonly idRuta: string,
-        public readonly nombre: string, // Ej: "Ruta del Pisco" o "City Tour Histórico"
-        public readonly origen: string,
-        public readonly destino: string,
-        public readonly duracionEstimadaHoras: number,
-        public readonly precioBase: number
-    ) {}
+  constructor(
+    public readonly idRuta: string,
+    public nombre: string,
+    public origen: string,
+    public destino: string,
+    public duracionEstimadaHoras: number,
+    public precioBase: number
+  ) {}
 
-    /**
-     * Permite añadir puntos de interés o escalas técnicas a la ruta.
-     */
-    public agregarParada(nombreParada: string): void {
-        this.paradas.push(nombreParada);
-    }
+  public agregarParada(nombreParada: string): void {
+    this.paradas.push(nombreParada);
+  }
 
-    public getParadas(): string[] {
-        // Retornamos una copia para proteger la integridad del array original (Encapsulamiento)
-        return [...this.paradas];
-    }
+  public setParadas(nuevasParadas: string[]): void {
+    this.paradas = [...nuevasParadas];
+  }
 
-    /**
-     * Retorna una descripción resumida de la ruta.
-     */
-    public obtenerResumen(): string {
-        return `${this.nombre} (${this.origen} -> ${this.destino}) - Duración: ${this.duracionEstimadaHoras}h`;
-    }
+  public getParadas(): string[] {
+    return [...this.paradas];
+  }
+
+  public obtenerResumen(): string {
+    return `${this.nombre} (${this.origen} -> ${this.destino}) - Duración: ${this.duracionEstimadaHoras}h`;
+  }
+
+  toJSON() {
+    return {
+      idRuta: this.idRuta,
+      nombre: this.nombre,
+      origen: this.origen,
+      destino: this.destino,
+      duracionEstimadaHoras: this.duracionEstimadaHoras,
+      precioBase: this.precioBase,
+      paradas: this.paradas
+    };
+  }
 }
