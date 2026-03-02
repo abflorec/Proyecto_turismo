@@ -1,69 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Turismo Tacna - Reserva de Pasajes</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Reserva de pasajes y tours desde Tacna - Moquegua, Tarata, Ite, Candarave y Tour Histórico"/>
+  <title>Reserva de Pasajes y Tours - Tacna</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <div class="container">
     <header>
-        <div class="header-content">
-            <div class="logo">🚌 Turismo Tacna</div>
-        </div>
+      <h1>Reserva tu viaje desde Tacna</h1>
+      <p class="subtitle">Rutas nacionales y tours históricos</p>
     </header>
 
-    <section class="hero-search">
-        <div class="search-bar">
-            <div class="search-input">
-                <label>ORIGEN</label>
-                <input type="text" id="origen" value="TACNA" readonly>
-            </div>
-            <div class="search-input">
-                <label>DESTINO</label>
-                <select id="destino">
-                    <option value="CANDARAVE">CANDARAVE</option>
-                    <option value="ITE">ITE</option>
-                    <option value="AREQUIPA">AREQUIPA</option>
-                    <option value="LIMA">LIMA</option>
-                </select>
-            </div>
-            <div class="search-input">
-                <label>FECHA IDA</label>
-                <input type="date" id="fechaIda">
-            </div>
-            <button id="btnBuscar">BUSCAR BUSES</button>
+    <main>
+      <form id="formReserva" aria-label="Formulario de reserva de viaje">
+        
+        <div class="form-group">
+          <label for="nombre" class="required">Nombre completo</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            placeholder="Ej: Juan Pérez Gómez" 
+            required 
+            autocomplete="name"
+            aria-required="true"
+          >
         </div>
-    </section>
 
-    <main class="container">
-        <section class="gallery-section">
-            <h3>Galería</h3>
-            <div class="gallery">
-                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Bus+Tacna+1" alt="Bus 1"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Bus+Tacna+2" alt="Bus 2"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Terminal+Tacna" alt="Terminal"></div>
-            </div>
-        </section>
+        <div class="form-group">
+          <label for="email" class="required">Correo electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="ejemplo@correo.com" 
+            required 
+            autocomplete="email"
+            aria-required="true"
+          >
+        </div>
 
-        <section class="routes-section">
-            <h3>Rutas y Horarios desde Tacna</h3>
-            <div class="route-cards">
-                <div class="card">
-                    <h4>Tacna a Candarave</h4>
-                    <p>Desde PEN 20.00</p>
-                    <small>Primera Partida: 06:00 | Última: 15:00</small>
-                    <button class="btn-reserve">RESERVAR AHORA</button>
-                </div>
-                <div class="card">
-                    <h4>Tacna a Ite</h4>
-                    <p>Desde PEN 15.00</p>
-                    <small>Primera Partida: 07:00 | Última: 17:00</small>
-                    <button class="btn-reserve">RESERVAR AHORA</button>
-                </div>
-            </div>
-        </section>
+        <div class="form-group">
+          <label for="telefono" class="required">Teléfono / WhatsApp</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            name="telefono" 
+            placeholder="Ej: +51 987 654 321" 
+            required 
+            autocomplete="tel"
+            aria-required="true"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="tipoBoleto" class="required">Tipo de boleto</label>
+          <select id="tipoBoleto" name="tipoBoleto" required aria-required="true">
+            <option value="" disabled selected>Seleccione tipo de boleto</option>
+            <option value="Normal">Normal</option>
+            <option value="VIP">VIP</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ruta" class="required">Ruta o Tour</label>
+          <select id="ruta" name="ruta" required aria-required="true">
+            <option value="" disabled selected>Seleccione ruta o tour</option>
+            <option value="Tacna - Moquegua">Tacna → Moquegua</option>
+            <option value="Tacna - Tarata">Tacna → Tarata</option>
+            <option value="Tacna - Ite">Tacna → Ite</option>
+            <option value="Tacna - Candarave">Tacna → Candarave</option>
+            <option value="Tour General Histórico de Tacna">Tour General Histórico de Tacna</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha" class="required">Fecha del viaje</label>
+          <input 
+            type="date" 
+            id="fecha" 
+            name="fecha" 
+            required 
+            aria-required="true"
+          >
+          <!-- El min se establece con JavaScript más abajo -->
+        </div>
+
+        <button type="submit" id="btnSubmit">Registrar Reserva</button>
+
+        <div id="mensaje" role="alert" aria-live="polite"></div>
+      </form>
     </main>
 
-    <script src="script.js"></script>
+    <footer>
+      <p>© 2025 - Sistema de Reservas Tacna</p>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+
 </body>
 </html>

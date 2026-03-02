@@ -1,52 +1,32 @@
+// src/server.ts
 import express from 'express';
 import path from 'path';
-import { Pasajero } from './core/entities/Pasajero';
-import { Reserva } from './core/entities/Reserva';
-import { Boleto } from './core/entities/Boleto';
-import { ServicioVIP } from './core/entities/ServicioVIP';
-import { BoletoRepository } from '../Repositories/BoletoRepository';
-import { EstadoReserva } from './core/entities/Enums';
+import publicRoutes from './routes/publicRoutes';
+
+console.log('Ruta absoluta del JSON:', path.resolve(process.cwd(), 'data/reservas.json'));
 
 const app = express();
-const repo = new BoletoRepository();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Servir la carpeta frontend estáticamente
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Servir frontend
+app.use(express.static(path.join(process.cwd(), 'frontend')));
 
-app.post('/api/reservar', (req, res) => {
-    const { nombre, dni, telefono, categoria } = req.body;
+// Rutas API
+app.use('/', publicRoutes);  // o '/api' si prefieres prefijo
 
-    try {
-        // 1. Creamos al Pasajero (Herencia de Persona)
-        const pasajero = new Pasajero(Math.floor(Math.random() * 1000), nombre, telefono, dni);
-
-        // 2. Definimos el Servicio (Polimorfismo)
-        const servicio = new ServicioVIP(1, "Servicio VIP", 100);
-        const precioFinal = servicio.calcularPrecioBase();
-
-        // 3. Creamos la Reserva y el Boleto
-        const nuevaReserva = new Reserva(Date.now(), new Date(), pasajero);
-        nuevaReserva.estado = EstadoReserva.CONFIRMADA;
-
-        const nuevoBoleto = new Boleto(
-            `BOL-${Math.floor(Math.random() * 9999)}`,
-            precioFinal,
-            new Date(),
-            servicio
-        );
-
-        // 4. Guardamos en el JSON a través del Repositorio
-        repo.guardar({
-            reserva: nuevaReserva,
-            boleto: nuevoBoleto,
-            cliente: pasajero.nombre
-        });
-
-        res.status(200).json({ mensaje: "¡Reserva y Boleto generados!", detalle: nuevoBoleto });
-    } catch (error) {
-        res.status(500).json({ error: "Error en el sistema de transporte" });
-    }
+// Ruta raíz → frontend
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(process.cwd(), 'frontend/index.html'));
 });
 
-app.listen(3000, () => console.log("🚀 Sistema TipoServicioBus operativo en http://localhost:3000"));
+// Ruta wildcard para SPA / fallback 404 → versión Express 5
+app.get('/*splat', (_req, res) => {
+  res.sendFile(path.join(process.cwd(), 'frontend/index.html'));
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo → http://localhost:${PORT}`);
+});
