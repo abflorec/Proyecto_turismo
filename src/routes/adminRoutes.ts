@@ -65,7 +65,17 @@ router.post('/admin/usuarios', authMiddleware, roleMiddleware(['admin']), async 
 
 router.put('/admin/usuarios/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
-    const id = parseInt(req.params.id);
+    // CORREGIDO: Manejar parámetro correctamente
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    
+    const id = parseInt(idParam);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID debe ser un número' });
+    }
+    
     const { email, rol, nombre, telefono, dni, licencia } = req.body;
     const usuario = await userRepo.findById(id);
     if (!usuario) {
@@ -86,7 +96,17 @@ router.put('/admin/usuarios/:id', authMiddleware, roleMiddleware(['admin']), asy
 
 router.delete('/admin/usuarios/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
-    const id = parseInt(req.params.id);
+    // CORREGIDO: Manejar parámetro correctamente
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    
+    const id = parseInt(idParam);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID debe ser un número' });
+    }
+    
     await userRepo.delete(id);
     res.json({ message: 'Usuario eliminado' });
   } catch (err) {
@@ -121,8 +141,17 @@ router.post('/admin/buses', authMiddleware, roleMiddleware(['admin']), async (re
 
 router.put('/admin/buses/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
+    // CORREGIDO: Manejar parámetro correctamente
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
     
-    const id = parseInt(req.params.id);
+    const id = parseInt(idParam);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID debe ser un número' });
+    }
+    
     const { placa, capacidad, modelo, estado } = req.body;
     const bus = await busRepo.findById(id);
     if (!bus) return res.status(404).json({ error: 'Bus no encontrado' });
@@ -139,7 +168,17 @@ router.put('/admin/buses/:id', authMiddleware, roleMiddleware(['admin']), async 
 
 router.delete('/admin/buses/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
-    const id = parseInt(req.params.id);
+    // CORREGIDO: Manejar parámetro correctamente
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    
+    const id = parseInt(idParam);
+    if (isNaN(id)) {
+      return res.status(400).json({ error: 'ID debe ser un número' });
+    }
+    
     await busRepo.delete(id);
     res.json({ message: 'Bus eliminado' });
   } catch (err) {
@@ -177,7 +216,13 @@ router.post('/admin/rutas', authMiddleware, roleMiddleware(['admin']), async (re
 
 router.put('/admin/rutas/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
-    const id = req.params.id;
+    // CORREGIDO: Manejar parámetro correctamente (string, no número)
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    
+    const id = idParam; // Es string, no convertir a número
     const { nombre, origen, destino, duracionEstimadaHoras, precioBase, paradas } = req.body;
     const ruta = await rutaRepo.findById(id);
     if (!ruta) return res.status(404).json({ error: 'Ruta no encontrada' });
@@ -198,7 +243,13 @@ router.put('/admin/rutas/:id', authMiddleware, roleMiddleware(['admin']), async 
 
 router.delete('/admin/rutas/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
-    const id = req.params.id;
+    // CORREGIDO: Manejar parámetro correctamente (string, no número)
+    const idParam = req.params.id;
+    if (Array.isArray(idParam)) {
+      return res.status(400).json({ error: 'ID inválido' });
+    }
+    
+    const id = idParam; // Es string, no convertir a número
     await rutaRepo.delete(id);
     res.json({ message: 'Ruta eliminada' });
   } catch (err) {

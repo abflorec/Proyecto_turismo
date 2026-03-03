@@ -57,7 +57,7 @@
       </form>
     </div>
 
-    <!-- Panel de Cliente -->
+    <!-- Panel de Cliente (original) -->
     <div id="cliente-panel" class="app-container" style="display: none;">
       <header>
         <h1>✈️ Turismo Tacna</h1>
@@ -112,6 +112,90 @@
       <footer>
         <p>© 2025 Sistema de Reservas Turismo Tacna. Todos los derechos reservados.</p>
       </footer>
+    </div>
+
+    <!-- Panel de Cliente - Dashboard (NUEVO) -->
+    <div id="cliente-dashboard" class="app-container" style="display: none;">
+      <header>
+        <h1>👤 Mi Panel de Viajes</h1>
+        <p>
+          <span>Bienvenido, <strong id="cliente-dashboard-name"></strong>!</span>
+          <button id="logout-btn-dashboard" class="logout-btn">Cerrar sesión</button>
+        </p>
+      </header>
+      
+      <main>
+        <!-- Pestañas del dashboard -->
+        <div class="dashboard-tabs">
+          <button class="dashboard-tab active" data-tab="mis-viajes">📋 Mis Viajes</button>
+          <button class="dashboard-tab" data-tab="nuevo-viaje"> Nuevo Viaje</button>
+        </div>
+
+        <!-- Sección: Mis Viajes -->
+        <div id="mis-viajes" class="dashboard-section active">
+          <h2>📅 Mis Reservas</h2>
+          <div id="reservas-list" class="reservas-grid">
+            <!-- Las reservas se cargarán aquí dinámicamente -->
+            <div class="loading-reservas">
+              <div class="spinner"></div>
+              <p>Cargando tus reservas...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección: Nuevo Viaje -->
+        <div id="nuevo-viaje" class="dashboard-section">
+          <h2>🚌 Reservar Nuevo Viaje</h2>
+          <form id="formReservaDashboard">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dashboard-nombre" class="required">Nombre completo</label>
+                <input type="text" id="dashboard-nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+              </div>
+              <div class="form-group">
+                <label for="dashboard-email" class="required">Correo electrónico</label>
+                <input type="email" id="dashboard-email" name="email" placeholder="ejemplo@correo.com" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dashboard-telefono" class="required">Teléfono / WhatsApp</label>
+                <input type="tel" id="dashboard-telefono" name="telefono" placeholder="+51 999 999 999" required>
+              </div>
+              <div class="form-group">
+                <label for="dashboard-tipoBoleto" class="required">Tipo de boleto</label>
+                <select id="dashboard-tipoBoleto" name="tipoBoleto" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Normal">🎫 Normal</option>
+                  <option value="VIP">👑 VIP (Beneficios exclusivos)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dashboard-ruta" class="required">Ruta o Tour</label>
+                <select id="dashboard-ruta" name="ruta" required>
+                  <option value="" disabled selected>Selecciona tu destino</option>
+                  <option value="Tacna - Moquegua">🚌 Tacna → Moquegua</option>
+                  <option value="Tacna - Tarata">🏔️ Tacna → Tarata</option>
+                  <option value="Tacna - Ite">🏖️ Tacna → Ite</option>
+                  <option value="Tacna - Candarave">🌋 Tacna → Candarave</option>
+                  <option value="Tour General Histórico de Tacna">🏛️ Tour Histórico de Tacna</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="dashboard-fecha" class="required">Fecha del viaje</label>
+                <input type="date" id="dashboard-fecha" name="fecha" required>
+              </div>
+            </div>
+
+            <button type="submit" id="btnSubmitDashboard" class="btn-submit">Registrar Reserva</button>
+            <div id="dashboard-mensaje" class="message"></div>
+          </form>
+        </div>
+      </main>
     </div>
 
     <!-- Panel de Administrador -->

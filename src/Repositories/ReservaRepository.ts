@@ -48,4 +48,38 @@ export class ReservaRepository {
     const all = await ReservaRepository.readAll();
     return all.filter(r => r.userId === userId);
   }
+
+  // ========== NUEVO MÉTODO: findById ==========
+  async findById(id: number): Promise<Reserva | null> {
+    const all = await ReservaRepository.readAll();
+    return all.find(r => r.id === id) || null;
+  }
+
+  // ========== NUEVO MÉTODO: delete ==========
+  async delete(id: number): Promise<boolean> {
+    const all = await ReservaRepository.readAll();
+    const initialLength = all.length;
+    const filtered = all.filter(r => r.id !== id);
+    
+    if (filtered.length === initialLength) {
+      return false; // No se encontró la reserva
+    }
+    
+    await ReservaRepository.writeAll(filtered);
+    return true; // Eliminación exitosa
+  }
+
+  // ========== NUEVO MÉTODO: update (opcional, por si se necesita) ==========
+  async update(reserva: Reserva): Promise<boolean> {
+    const all = await ReservaRepository.readAll();
+    const index = all.findIndex(r => r.id === reserva.id);
+    
+    if (index === -1) {
+      return false;
+    }
+    
+    all[index] = reserva;
+    await ReservaRepository.writeAll(all);
+    return true;
+  }
 }

@@ -9,7 +9,20 @@
     "tipoBoleto": "Normal",
     "ruta": "Tacna - Tarata",
     "fecha": "2026-10-17",
-    "fechaRegistro": "2026-03-02T16:23:39.261Z",
+    "fechaRegistro": "2026-03-03T19:12:14.836Z",
     "userId": 1772468590679
+  },
+  {
+    "id": 1772565134835,
+    "pasajero": {
+      "nombre": "piligi",
+      "email": "ieiei@dasf",
+      "telefono": "12321321"
+    },
+    "tipoBoleto": "VIP",
+    "ruta": "Tacna - Tarata",
+    "fecha": "2026-03-30",
+    "fechaRegistro": "2026-03-03T19:12:14.835Z",
+    "userId": 1772565103910
   }
 ]

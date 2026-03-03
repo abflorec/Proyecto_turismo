@@ -37,6 +37,318 @@ style.textContent = `
     opacity: 0.8;
     cursor: wait;
   }
+
+  /* Estilos para el dashboard */
+  .dashboard-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .dashboard-tab {
+    flex: 1;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    color: #1f2937;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .dashboard-tab:hover {
+    background: rgba(37, 99, 235, 0.1);
+  }
+
+  .dashboard-tab.active {
+    background: #2563eb;
+    color: white;
+  }
+
+  .dashboard-section {
+    display: none;
+  }
+
+  .dashboard-section.active {
+    display: block;
+  }
+
+  .reservas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .reserva-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reserva-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+  }
+
+  .reserva-card.vip::before {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  }
+
+  .reserva-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .reserva-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .reserva-tipo {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .reserva-tipo.normal {
+    background: #e5e7eb;
+    color: #374151;
+  }
+
+  .reserva-tipo.vip {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .badge-success {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .reserva-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: #6b7280;
+  }
+
+  .reserva-info strong {
+    color: #1f2937;
+    margin-left: 0.25rem;
+  }
+
+  .reserva-fecha {
+    display: inline-block;
+    background: #f3f4f6;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: #1f2937;
+  }
+
+  .reserva-footer {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .btn-cancelar {
+    flex: 1;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-cancelar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-pagar {
+    flex: 1;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-pagar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal h3 {
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+
+  .modal p {
+    margin-bottom: 1.5rem;
+    color: #6b7280;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .modal-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .modal-btn.cancelar {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+
+  .modal-btn.cancelar:hover {
+    background: #e5e7eb;
+  }
+
+  .modal-btn.confirmar {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+  }
+
+  .modal-btn.confirmar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .no-reservas {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: #f3f4f6;
+    border-radius: 0.75rem;
+    color: #6b7280;
+  }
+
+  .no-reservas i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #2563eb;
+  }
+
+  .btn-reservar-ahora {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .btn-reservar-ahora:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .loading-reservas {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+  }
+
+  .loading-reservas .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .reservas-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .dashboard-tabs {
+      flex-direction: column;
+    }
+  }
 `;
 document.head.appendChild(style);
 
@@ -44,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Elementos comunes
   const authContainer = document.getElementById('auth-container');
   const clientePanel = document.getElementById('cliente-panel');
+  const clienteDashboard = document.getElementById('cliente-dashboard');
   const adminPanel = document.getElementById('admin-panel');
   const conductorPanel = document.getElementById('conductor-panel');
 
@@ -54,15 +367,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginMessage = document.getElementById('login-message');
   const registerMessage = document.getElementById('register-message');
 
-  // Botones de logout (varios según panel)
+  // Botones de logout
   const logoutBtns = document.querySelectorAll('.logout-btn');
 
-  // Elementos del panel cliente
+  // Elementos del panel cliente original
   const clienteNameSpan = document.getElementById('cliente-name');
   const formReserva = document.getElementById('formReserva');
   const mensaje = document.getElementById('mensaje');
   const btnSubmit = document.getElementById('btnSubmit');
   const inputFecha = document.getElementById('fecha');
+
+  // Elementos del DASHBOARD cliente
+  const clienteDashboardName = document.getElementById('cliente-dashboard-name');
+  const reservasList = document.getElementById('reservas-list');
+  const dashboardTabs = document.querySelectorAll('.dashboard-tab');
+  const dashboardSections = document.querySelectorAll('.dashboard-section');
+  const formReservaDashboard = document.getElementById('formReservaDashboard');
+  const dashboardMensaje = document.getElementById('dashboard-mensaje');
+  const btnSubmitDashboard = document.getElementById('btnSubmitDashboard');
+  const dashboardFecha = document.getElementById('dashboard-fecha');
+  const dashboardNombre = document.getElementById('dashboard-nombre');
+  const dashboardEmail = document.getElementById('dashboard-email');
+  const dashboardTelefono = document.getElementById('dashboard-telefono');
 
   // Elementos del panel admin
   const adminNameSpan = document.getElementById('admin-name');
@@ -95,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function mostrarAuth() {
     authContainer.style.display = 'block';
     clientePanel.style.display = 'none';
+    clienteDashboard.style.display = 'none';
     adminPanel.style.display = 'none';
     conductorPanel.style.display = 'none';
   }
@@ -110,17 +437,357 @@ document.addEventListener('DOMContentLoaded', () => {
         conductorPanel.style.display = 'block';
         conductorNameSpan.textContent = user.nombre || user.email;
         break;
-      default: // cliente
-        clientePanel.style.display = 'block';
-        clienteNameSpan.textContent = user.nombre || user.email;
+      default: // cliente - USAR EL NUEVO DASHBOARD
+        clienteDashboard.style.display = 'block';
+        clientePanel.style.display = 'none';
+        clienteDashboardName.textContent = user.nombre || user.email;
+        
+        // Precargar datos del usuario en el formulario
+        if (user.nombre) dashboardNombre.value = user.nombre;
+        if (user.email) dashboardEmail.value = user.email;
+        if (user.telefono) dashboardTelefono.value = user.telefono;
+        
         // Fecha mínima hoy
         const hoy = new Date().toISOString().split('T')[0];
-        if (inputFecha) inputFecha.setAttribute('min', hoy);
+        if (dashboardFecha) dashboardFecha.setAttribute('min', hoy);
+        
+        // Cargar reservas del usuario
+        cargarReservas();
         break;
     }
   }
 
-  // Pestañas de login/registro
+  // ==================== FUNCIONES DEL DASHBOARD ====================
+  
+  // Pestañas del dashboard
+  dashboardTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      dashboardTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      const tabId = tab.dataset.tab;
+      dashboardSections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === tabId) {
+          section.classList.add('active');
+        }
+      });
+    });
+  });
+
+  // Cargar reservas del usuario
+  async function cargarReservas() {
+    if (!reservasList) return;
+    
+    reservasList.innerHTML = `
+      <div class="loading-reservas">
+        <div class="spinner"></div>
+        <p>Cargando tus reservas...</p>
+      </div>
+    `;
+
+    const token = localStorage.getItem('token');
+    
+    try {
+      const res = await fetch('/api/reservas/mis-reservas', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (res.ok) {
+        const reservas = await res.json();
+        mostrarReservas(reservas);
+      } else {
+        reservasList.innerHTML = `
+          <div class="no-reservas">
+            <p>Error al cargar las reservas</p>
+          </div>
+        `;
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      reservasList.innerHTML = `
+        <div class="no-reservas">
+          <p>Error de conexión</p>
+        </div>
+      `;
+    }
+  }
+
+  // Mostrar reservas en grid
+  function mostrarReservas(reservas) {
+    if (!reservasList) return;
+    
+    if (reservas.length === 0) {
+      reservasList.innerHTML = `
+        <div class="no-reservas">
+          <i>📭</i>
+          <p>No tienes reservas activas</p>
+          <button class="btn-reservar-ahora" onclick="document.querySelector('[data-tab=\\'nuevo-viaje\\']').click()">
+            ✈️ Reservar mi primer viaje
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    let html = '';
+    reservas.forEach(reserva => {
+      const fechaViaje = new Date(reserva.fecha).toLocaleDateString('es-PE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      const fechaRegistro = new Date(reserva.fechaRegistro).toLocaleDateString('es-PE');
+      const esVIP = reserva.tipoBoleto === 'VIP';
+      
+      html += `
+        <div class="reserva-card ${esVIP ? 'vip' : ''}" data-reserva-id="${reserva.id}">
+          <div class="reserva-header">
+            <span class="reserva-tipo ${esVIP ? 'vip' : 'normal'}">
+              ${esVIP ? '👑 VIP' : '🎫 Normal'}
+            </span>
+            <span class="badge-success">Confirmada</span>
+          </div>
+          
+          <div class="reserva-body">
+            <div class="reserva-info">
+              <span>👤</span>
+              <span><strong>${reserva.pasajero.nombre}</strong></span>
+            </div>
+            
+            <div class="reserva-info">
+              <span>📍</span>
+              <span>${reserva.ruta}</span>
+            </div>
+            
+            <div class="reserva-info">
+              <span>📅</span>
+              <span>${fechaViaje}</span>
+            </div>
+            
+            <div class="reserva-info">
+              <span>📞</span>
+              <span>${reserva.pasajero.telefono}</span>
+            </div>
+            
+            <div class="reserva-fecha">
+              Reservado: ${fechaRegistro}
+            </div>
+          </div>
+          
+          <div class="reserva-footer">
+            <button class="btn-pagar" onclick="comprarBoleto(${reserva.id})">
+              💰 Comprar Boleto
+            </button>
+            <button class="btn-cancelar" onclick="cancelarReserva(${reserva.id})">
+              ❌ Cancelar
+            </button>
+          </div>
+        </div>
+      `;
+    });
+    
+    reservasList.innerHTML = html;
+  }
+
+  // Función global para cancelar reserva
+  window.cancelarReserva = async (reservaId) => {
+    // Crear modal de confirmación
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal">
+        <h3>❌ Cancelar Reserva</h3>
+        <p>¿Estás seguro de que deseas cancelar esta reserva? Esta acción no se puede deshacer.</p>
+        <div class="modal-actions">
+          <button class="modal-btn cancelar" id="modal-cancelar">No, mantener</button>
+          <button class="modal-btn confirmar" id="modal-confirmar">Sí, cancelar</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Manejar botones del modal
+    document.getElementById('modal-cancelar').onclick = () => {
+      document.body.removeChild(modal);
+    };
+    
+    document.getElementById('modal-confirmar').onclick = async () => {
+      document.body.removeChild(modal);
+      
+      const token = localStorage.getItem('token');
+      
+      // Mostrar loading en la tarjeta específica
+      const reservaCard = document.querySelector(`.reserva-card[data-reserva-id="${reservaId}"]`);
+      if (!reservaCard) return;
+      
+      const originalHTML = reservaCard.innerHTML;
+      reservaCard.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <div class="spinner" style="width: 40px; height: 40px; margin: 0 auto 1rem;"></div>
+          <p>Cancelando reserva...</p>
+        </div>
+      `;
+      
+      try {
+        const res = await fetch(`/api/reservas/${reservaId}`, {
+          method: 'DELETE',
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        const data = await res.json();
+        
+        if (res.ok) {
+          // Mostrar mensaje de éxito
+          const mensajeExito = document.createElement('div');
+          mensajeExito.className = 'message success';
+          mensajeExito.textContent = '✅ Reserva cancelada exitosamente';
+          mensajeExito.style.marginBottom = '1rem';
+          
+          const misViajesSection = document.querySelector('#mis-viajes');
+          if (misViajesSection) {
+            misViajesSection.prepend(mensajeExito);
+          }
+          
+          // Eliminar el mensaje después de 3 segundos
+          setTimeout(() => mensajeExito.remove(), 3000);
+          
+          // Recargar reservas
+          cargarReservas();
+        } else {
+          // Restaurar la tarjeta y mostrar error
+          reservaCard.innerHTML = originalHTML;
+          alert('❌ Error: ' + (data.error || 'No se pudo cancelar la reserva'));
+        }
+      } catch (err) {
+        console.error(err);
+        reservaCard.innerHTML = originalHTML;
+        alert('❌ Error de conexión');
+      }
+    };
+  };
+
+  // Función global para comprar boleto
+  window.comprarBoleto = (reservaId) => {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal">
+        <h3>💰 Comprar Boleto</h3>
+        <p>¿Deseas proceder con la compra del boleto para esta reserva?</p>
+        <div class="modal-actions">
+          <button class="modal-btn cancelar" id="modal-cancelar">Cancelar</button>
+          <button class="modal-btn confirmar" id="modal-confirmar" style="background: linear-gradient(135deg, #10b981, #059669);">
+            Pagar ahora
+          </button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    document.getElementById('modal-cancelar').onclick = () => {
+      document.body.removeChild(modal);
+    };
+    
+    document.getElementById('modal-confirmar').onclick = async () => {
+      document.body.removeChild(modal);
+      
+      const token = localStorage.getItem('token');
+      
+      try {
+        const res = await fetch(`/api/reservas/${reservaId}/comprar`, {
+          method: 'POST',
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        const data = await res.json();
+        
+        if (res.ok) {
+          alert(`✅ ${data.message}\nCódigo de boleto: ${data.boleto.codigo}\nTotal: S/. ${data.boleto.total}`);
+        } else {
+          alert('❌ Error: ' + (data.error || 'No se pudo procesar la compra'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Error de conexión');
+      }
+    };
+  };
+
+  // Formulario de nueva reserva en dashboard
+  if (formReservaDashboard) {
+    formReservaDashboard.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const restoreButton = showLoading(btnSubmitDashboard);
+
+      dashboardMensaje.textContent = '';
+      dashboardMensaje.className = 'message';
+
+      const formData = new FormData(formReservaDashboard);
+      const data = Object.fromEntries(formData);
+      const token = localStorage.getItem('token');
+      const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+      if (!token || !user) {
+        dashboardMensaje.textContent = 'No estás autenticado';
+        dashboardMensaje.className = 'message error';
+        restoreButton();
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/reservas', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            ...data,
+            userId: user.id
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          dashboardMensaje.textContent = '✅ ¡Reserva registrada con éxito!';
+          dashboardMensaje.className = 'message success';
+          formReservaDashboard.reset();
+          
+          // Recargar reservas y cambiar a la pestaña de mis viajes
+          await cargarReservas();
+          document.querySelector('[data-tab="mis-viajes"]').click();
+          
+          // Precargar datos del usuario nuevamente
+          if (user.nombre) dashboardNombre.value = user.nombre;
+          if (user.email) dashboardEmail.value = user.email;
+          if (user.telefono) dashboardTelefono.value = user.telefono;
+        } else {
+          dashboardMensaje.textContent = result.error || 'Error al registrar la reserva';
+          dashboardMensaje.className = 'message error';
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        dashboardMensaje.textContent = 'No se pudo conectar con el servidor.';
+        dashboardMensaje.className = 'message error';
+      } finally {
+        restoreButton();
+      }
+    });
+  }
+
+  // ==================== PESTAÑAS DE LOGIN/REGISTRO ====================
   loginTab.addEventListener('click', () => {
     loginTab.classList.add('active');
     registerTab.classList.remove('active');
@@ -234,13 +901,12 @@ document.addEventListener('DOMContentLoaded', () => {
       loginForm.reset();
       registerForm.reset();
       
-      // Mostrar mensaje de logout
       loginMessage.textContent = 'Sesión cerrada correctamente';
       loginMessage.className = 'message success';
     });
   });
 
-  // ==================== FUNCIONES CLIENTE ====================
+  // ==================== FUNCIONES CLIENTE ORIGINAL (por compatibilidad) ====================
   if (formReserva) {
     formReserva.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -254,8 +920,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(formReserva);
       const data = Object.fromEntries(formData);
       const token = localStorage.getItem('token');
+      const user = JSON.parse(localStorage.getItem('user') || 'null');
 
-      if (!token) {
+      if (!token || !user) {
         mensaje.textContent = 'No estás autenticado';
         mensaje.className = 'message error';
         restoreButton();
@@ -269,13 +936,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify({
+            ...data,
+            userId: user.id
+          })
         });
 
         const result = await response.json();
 
         if (response.ok) {
-          mensaje.textContent = `¡Reserva registrada con éxito! ID: ${result.reserva?.id || '—'}`;
+          mensaje.textContent = '✅ ¡Reserva registrada con éxito!';
           mensaje.className = 'message success';
           formReserva.reset();
         } else {
@@ -416,7 +1086,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function crearUsuarioForm() {
-    // Crear un modal simple con prompt (mejorable)
     const email = prompt('📧 Email:');
     if (!email) return;
     

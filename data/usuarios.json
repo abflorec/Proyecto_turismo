@@ -30,5 +30,13 @@
     "rol": "cliente",
     "nombre": "Personita",
     "telefono": "929292"
+  },
+  {
+    "id": 1772565103910,
+    "email": "ieiei@dasf",
+    "passwordHash": "$2b$10$R5vU98tPnFZdNDCIVsLNrO2zoGYT58jX2u3DWjEK8n1NvHcAS0Aau",
+    "rol": "cliente",
+    "nombre": "piligi",
+    "telefono": "12321321"
   }
 ]
