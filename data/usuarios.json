@@ -22,5 +22,13 @@
     "rol": "conductor",
     "nombre": "Conductor123",
     "telefono": "987654321"
+  },
+  {
+    "id": 1772504758907,
+    "email": "pocomas@123",
+    "passwordHash": "$2b$10$Sy3qNxQmHA6eUxFlz/40/OCb7EIzWKj54chOl9TWTDxizTUiMh9bS",
+    "rol": "cliente",
+    "nombre": "Personita",
+    "telefono": "929292"
   }
 ]

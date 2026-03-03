@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Reservas - Tacna</title>
+  <title>Sistema de Reservas - Turismo Tacna</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <!-- Vista de Login/Registro (siempre visible al no estar autenticado) -->
+    <!-- Vista de Login/Registro -->
     <div id="auth-container" class="auth-container">
       <div class="tabs">
         <button class="tab-button active" id="login-tab">Iniciar Sesión</button>
@@ -17,129 +18,139 @@
 
       <!-- Formulario de Login -->
       <form id="login-form" class="auth-form active">
-        <h2>Accede a tu cuenta</h2>
+        <h2>Bienvenido de nuevo</h2>
+        <p class="subtitle">Ingresa tus credenciales para continuar</p>
         <div class="form-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" required>
+          <label for="login-email" class="required">Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="ejemplo@correo.com" required>
         </div>
         <div class="form-group">
-          <label for="login-password">Contraseña</label>
-          <input type="password" id="login-password" required>
+          <label for="login-password" class="required">Contraseña</label>
+          <input type="password" id="login-password" placeholder="••••••••" required>
         </div>
-        <button type="submit">Ingresar</button>
+        <button type="submit" class="btn-submit">Ingresar</button>
         <div id="login-message" class="message"></div>
       </form>
 
       <!-- Formulario de Registro -->
       <form id="register-form" class="auth-form">
         <h2>Crear cuenta nueva</h2>
+        <p class="subtitle">Regístrate para comenzar a reservar</p>
         <div class="form-group">
           <label for="register-nombre">Nombre completo</label>
-          <input type="text" id="register-nombre">
+          <input type="text" id="register-nombre" placeholder="Juan Pérez">
         </div>
         <div class="form-group">
-          <label for="register-email">Email</label>
-          <input type="email" id="register-email" required>
+          <label for="register-email" class="required">Correo electrónico</label>
+          <input type="email" id="register-email" placeholder="ejemplo@correo.com" required>
         </div>
         <div class="form-group">
           <label for="register-telefono">Teléfono</label>
-          <input type="tel" id="register-telefono">
+          <input type="tel" id="register-telefono" placeholder="+51 999 999 999">
         </div>
         <div class="form-group">
-          <label for="register-password">Contraseña</label>
-          <input type="password" id="register-password" required>
+          <label for="register-password" class="required">Contraseña</label>
+          <input type="password" id="register-password" placeholder="••••••••" required>
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" class="btn-submit">Registrarse</button>
         <div id="register-message" class="message"></div>
       </form>
     </div>
 
-    <!-- Panel de Cliente (Reservas) -->
+    <!-- Panel de Cliente -->
     <div id="cliente-panel" class="app-container" style="display: none;">
       <header>
-        <h1>Reserva tu viaje desde Tacna</h1>
-        <p class="subtitle">Bienvenido, <span id="cliente-name"></span>! <button id="logout-btn-cliente" class="logout-btn">Cerrar sesión</button></p>
+        <h1>✈️ Turismo Tacna</h1>
+        <p>
+          <span>Bienvenido, <strong id="cliente-name"></strong>!</span>
+          <button id="logout-btn-cliente" class="logout-btn">Cerrar sesión</button>
+        </p>
       </header>
       <main>
         <form id="formReserva">
+          <h2>Reserva tu viaje</h2>
+          <p class="subtitle">Completa el formulario para asegurar tu lugar</p>
           <div class="form-group">
             <label for="nombre" class="required">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
           </div>
           <div class="form-group">
             <label for="email" class="required">Correo electrónico</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
           </div>
           <div class="form-group">
             <label for="telefono" class="required">Teléfono / WhatsApp</label>
-            <input type="tel" id="telefono" name="telefono" required>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 999 999 999" required>
           </div>
           <div class="form-group">
             <label for="tipoBoleto" class="required">Tipo de boleto</label>
             <select id="tipoBoleto" name="tipoBoleto" required>
-              <option value="" disabled selected>Seleccione tipo</option>
-              <option value="Normal">Normal</option>
-              <option value="VIP">VIP</option>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Normal">🎫 Normal</option>
+              <option value="VIP">👑 VIP (Beneficios exclusivos)</option>
             </select>
           </div>
           <div class="form-group">
             <label for="ruta" class="required">Ruta o Tour</label>
             <select id="ruta" name="ruta" required>
-              <option value="" disabled selected>Seleccione ruta</option>
-              <option value="Tacna - Moquegua">Tacna → Moquegua</option>
-              <option value="Tacna - Tarata">Tacna → Tarata</option>
-              <option value="Tacna - Ite">Tacna → Ite</option>
-              <option value="Tacna - Candarave">Tacna → Candarave</option>
-              <option value="Tour General Histórico de Tacna">Tour General Histórico</option>
+              <option value="" disabled selected>Selecciona tu destino</option>
+              <option value="Tacna - Moquegua">🚌 Tacna → Moquegua</option>
+              <option value="Tacna - Tarata">🏔️ Tacna → Tarata</option>
+              <option value="Tacna - Ite">🏖️ Tacna → Ite</option>
+              <option value="Tacna - Candarave">🌋 Tacna → Candarave</option>
+              <option value="Tour General Histórico de Tacna">🏛️ Tour Histórico de Tacna</option>
             </select>
           </div>
           <div class="form-group">
             <label for="fecha" class="required">Fecha del viaje</label>
             <input type="date" id="fecha" name="fecha" required>
           </div>
-          <button type="submit" id="btnSubmit">Registrar Reserva</button>
+          <button type="submit" id="btnSubmit" class="btn-submit">Registrar Reserva</button>
           <div id="mensaje" class="message"></div>
         </form>
       </main>
       <footer>
-        <p>© 2025 - Sistema de Reservas Tacna</p>
+        <p>© 2025 Sistema de Reservas Turismo Tacna. Todos los derechos reservados.</p>
       </footer>
     </div>
 
     <!-- Panel de Administrador -->
     <div id="admin-panel" style="display: none;">
       <header>
-        <h1>Panel de Administrador</h1>
-        <p>Bienvenido, <span id="admin-name"></span>! <button id="logout-btn-admin" class="logout-btn">Cerrar sesión</button></p>
+        <h1>⚙️ Panel de Administración</h1>
+        <p>
+          <span>Bienvenido, <strong id="admin-name"></strong>!</span>
+          <button id="logout-btn-admin" class="logout-btn">Cerrar sesión</button>
+        </p>
       </header>
       <main>
         <div class="admin-section">
-          <h2>Gestión de Usuarios</h2>
-          <button id="btn-list-usuarios">Listar Usuarios</button>
-          <button id="btn-create-usuario">Crear Usuario</button>
+          <h2>👥 Gestión de Usuarios</h2>
+          <button id="btn-list-usuarios">Ver usuarios</button>
+          <button id="btn-create-usuario">Nuevo usuario</button>
           <div id="usuarios-list"></div>
         </div>
         <div class="admin-section">
-          <h2>Gestión de Buses</h2>
-          <button id="btn-list-buses">Listar Buses</button>
-          <button id="btn-create-bus">Crear Bus</button>
+          <h2>🚌 Gestión de Buses</h2>
+          <button id="btn-list-buses">Ver buses</button>
+          <button id="btn-create-bus">Nuevo bus</button>
           <div id="buses-list"></div>
         </div>
         <div class="admin-section">
-          <h2>Gestión de Rutas</h2>
-          <button id="btn-list-rutas">Listar Rutas</button>
-          <button id="btn-create-ruta">Crear Ruta</button>
+          <h2>🗺️ Gestión de Rutas</h2>
+          <button id="btn-list-rutas">Ver rutas</button>
+          <button id="btn-create-ruta">Nueva ruta</button>
           <div id="rutas-list"></div>
         </div>
         <div class="admin-section">
-          <h2>Gestión de Viajes</h2>
-          <button id="btn-list-viajes">Listar Viajes</button>
-          <button id="btn-create-viaje">Crear Viaje</button>
+          <h2>📅 Gestión de Viajes</h2>
+          <button id="btn-list-viajes">Ver viajes</button>
+          <button id="btn-create-viaje">Nuevo viaje</button>
           <div id="viajes-list"></div>
         </div>
         <div class="admin-section">
-          <h2>Reportes</h2>
-          <button id="btn-reporte">Descargar Reporte de Reservas</button>
+          <h2>📊 Reportes</h2>
+          <button id="btn-reporte">Descargar reporte de reservas</button>
         </div>
       </main>
     </div>
@@ -147,36 +158,39 @@
     <!-- Panel de Conductor -->
     <div id="conductor-panel" style="display: none;">
       <header>
-        <h1>Panel de Conductor</h1>
-        <p>Bienvenido, <span id="conductor-name"></span>! <button id="logout-btn-conductor" class="logout-btn">Cerrar sesión</button></p>
+        <h1>🚍 Panel del Conductor</h1>
+        <p>
+          <span>Bienvenido, <strong id="conductor-name"></strong>!</span>
+          <button id="logout-btn-conductor" class="logout-btn">Cerrar sesión</button>
+        </p>
       </header>
       <main>
         <div class="conductor-section">
-          <h2>Completar Datos</h2>
+          <h2>📋 Completar datos personales</h2>
           <form id="conductor-datos-form">
             <div class="form-group">
               <label for="dni">DNI</label>
-              <input type="text" id="dni" name="dni">
+              <input type="text" id="dni" name="dni" placeholder="12345678">
             </div>
             <div class="form-group">
-              <label for="licencia">Licencia</label>
-              <input type="text" id="licencia" name="licencia">
+              <label for="licencia">Licencia de conducir</label>
+              <input type="text" id="licencia" name="licencia" placeholder="L123456">
             </div>
             <div class="form-group">
-              <label for="bus-preferido">Bus Preferido (ID)</label>
-              <input type="number" id="bus-preferido" name="busId">
+              <label for="bus-preferido">Bus preferido (ID)</label>
+              <input type="number" id="bus-preferido" name="busId" placeholder="Ingrese ID del bus">
             </div>
-            <button type="submit">Guardar Datos</button>
+            <button type="submit">Guardar datos</button>
           </form>
         </div>
         <div class="conductor-section">
-          <h2>Mis Viajes Asignados</h2>
-          <button id="btn-mis-viajes">Ver Viajes</button>
+          <h2>🚍 Mis viajes asignados</h2>
+          <button id="btn-mis-viajes">Ver viajes</button>
           <div id="viajes-conductor-list"></div>
         </div>
         <div class="conductor-section">
-          <h2>Buses Disponibles</h2>
-          <button id="btn-buses-disponibles">Ver Buses</button>
+          <h2>🔍 Buses disponibles</h2>
+          <button id="btn-buses-disponibles">Ver buses</button>
           <div id="buses-disponibles-list"></div>
         </div>
       </main>

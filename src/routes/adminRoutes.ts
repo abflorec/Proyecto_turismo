@@ -121,6 +121,7 @@ router.post('/admin/buses', authMiddleware, roleMiddleware(['admin']), async (re
 
 router.put('/admin/buses/:id', authMiddleware, roleMiddleware(['admin']), async (req: AuthRequest, res: Response) => {
   try {
+    
     const id = parseInt(req.params.id);
     const { placa, capacidad, modelo, estado } = req.body;
     const bus = await busRepo.findById(id);
